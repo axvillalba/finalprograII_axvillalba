@@ -1,0 +1,27 @@
+# Compilados Java
+*.class
+bin/
+out/
+target/
+
+# Logs
+*.log
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# NetBeans
+nbproject/private/
+build/
+dist/
+
+# Mac/Windows basura
+.DS_Store
+Thumbs.db

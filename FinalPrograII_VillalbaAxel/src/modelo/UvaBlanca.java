@@ -1,0 +1,5 @@
+package modelo;
+
+public enum UvaBlanca {
+    CHARDONNAY, SAUVIGNON_BLANC, TORRONTES, RIESLING, SEMILLON, VIOGNIER, PINOT_GRIGIO
+}

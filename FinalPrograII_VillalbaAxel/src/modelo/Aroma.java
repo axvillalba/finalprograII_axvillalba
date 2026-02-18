@@ -1,0 +1,5 @@
+package modelo;
+
+public enum Aroma {
+    FRUTAL, FLORAL, HERBAL, CITRICO, ESPECIADO, MINERAL, BALSAMICO, TORRADO
+}

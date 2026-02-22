@@ -28,7 +28,7 @@ public abstract class Vino implements Serializable {
         this.barrica = barrica;
         this.precio = precio;
         this.stockBotellas = stockBotellas;
-        validar();
+        //validar();
     }
 
     public void validar() {

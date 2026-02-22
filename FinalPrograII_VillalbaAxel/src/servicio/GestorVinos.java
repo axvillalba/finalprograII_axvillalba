@@ -79,4 +79,66 @@ public class GestorVinos implements ICrud<Vino> {
     public List<Vino> filtrarPorTipo(Class<? extends Vino> tipo) {
         return inventario.stream().filter(tipo::isInstance).collect(Collectors.toList());
     }
+
+
+public boolean agregarOSumarStock(Vino nuevo) {
+    Objects.requireNonNull(nuevo, "Vino nulo");
+
+    Optional<Vino> existenteOpt = buscarVinoEquivalente(nuevo);
+
+    if (existenteOpt.isPresent()) {
+        Vino existente = existenteOpt.get();
+
+        // Sumar stock
+        int nuevoStock = existente.getStockBotellas() + nuevo.getStockBotellas();
+        existente.setStockBotellas(nuevoStock);
+
+        // Regla opcional: actualizar precio con el último importado
+        existente.setPrecio(nuevo.getPrecio());
+
+        return true;
+    }
+
+    // Si no existe equivalente, se agrega como nuevo
+    return agregar(nuevo);
+}
+
+public Optional<Vino> buscarVinoEquivalente(Vino nuevo) {
+    return inventario.stream()
+            .filter(v -> sonEquivalentes(v, nuevo))
+            .findFirst();
+}
+
+private boolean sonEquivalentes(Vino a, Vino b) {
+    if (a == null || b == null) return false;
+
+    // Deben ser del mismo subtipo
+    if (!a.getClass().equals(b.getClass())) return false;
+
+    // Base común (comparación normalizada)
+    if (!normalizar(a.getNombre()).equals(normalizar(b.getNombre()))) return false;
+    if (!normalizar(a.getBodega()).equals(normalizar(b.getBodega()))) return false;
+    if (a.getAnioProduccion() != b.getAnioProduccion()) return false;
+    if (a.getTipoCrianza() != b.getTipoCrianza()) return false;
+
+    // Comparación por tipo específico
+    if (a instanceof modelo.Tinto ta && b instanceof modelo.Tinto tb) {
+        return ta.getUva() == tb.getUva();
+    }
+
+    if (a instanceof modelo.Blanco ba && b instanceof modelo.Blanco bb) {
+        return ba.getUva() == bb.getUva();
+    }
+
+    if (a instanceof modelo.Rosado ra && b instanceof modelo.Rosado rb) {
+        return ra.getUvaBase() == rb.getUvaBase()
+                && ra.getMetodo() == rb.getMetodo();
+    }
+
+    return false;
+}
+
+private String normalizar(String s) {
+    return s == null ? "" : s.trim().toLowerCase();
+}
 }

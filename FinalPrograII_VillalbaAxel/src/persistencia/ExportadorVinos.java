@@ -14,8 +14,7 @@ public class ExportadorVinos {
     public static void exportarCSV(File archivo, List<Vino> vinos) throws IOException {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
 
-            // Cabecera (mismo formato que usás para importar, pero agregando ID)
-            bw.write("id;tipo;nombre;bodega;anio;tipoCrianza;aroma;barrica;precio;stock;uva;taninos;cuerpo;dulzor;acidez;tempServicio;metodoRosado");
+            bw.write("tipo;nombre;bodega;anio;tipoCrianza;aroma;barrica;precio;stock;uva;taninos;cuerpo;dulzor;acidez;tempServicio;metodoRosado");
             bw.newLine();
 
             for (Vino v : vinos) {
@@ -33,11 +32,13 @@ public class ExportadorVinos {
                     uva = t.getUva().name();
                     taninos = t.getTaninos().name();
                     cuerpo = t.getCuerpo().name();
+
                 } else if (v instanceof Blanco b) {
                     uva = b.getUva().name();
                     dulzor = b.getDulzor().name();
                     acidez = b.getAcidez().name();
                     tempServicio = formatearDouble(b.getTempServicioC());
+
                 } else if (v instanceof Rosado r) {
                     uva = r.getUvaBase().name();
                     dulzor = r.getDulzor().name();
@@ -45,7 +46,6 @@ public class ExportadorVinos {
                 }
 
                 String linea = String.join(";",
-                        String.valueOf(v.getId()),
                         tipo,
                         limpiarCSV(v.getNombre()),
                         limpiarCSV(v.getBodega()),
@@ -144,14 +144,22 @@ public class ExportadorVinos {
     }
 
     private static String obtenerTipo(Vino v) {
-        if (v instanceof Tinto) return "TINTO";
-        if (v instanceof Blanco) return "BLANCO";
-        if (v instanceof Rosado) return "ROSADO";
+        if (v instanceof Tinto) {
+            return "TINTO";
+        }
+        if (v instanceof Blanco) {
+            return "BLANCO";
+        }
+        if (v instanceof Rosado) {
+            return "ROSADO";
+        }
         return "DESCONOCIDO";
     }
 
     private static String limpiarCSV(String texto) {
-        if (texto == null) return "";
+        if (texto == null) {
+            return "";
+        }
         // Evitamos romper el CSV si alguien puso ;
         return texto.replace(";", ",").trim();
     }

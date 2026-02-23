@@ -4,6 +4,7 @@ import servicio.GestorVinos;
 import modelo.Vino;
 import persistencia.CsvVinosImportador;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.util.List;
 
 public class Principal extends javax.swing.JFrame {
@@ -17,48 +18,94 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void configurarTabla() {
-        DefaultTableModel modelo = new DefaultTableModel(
-                new Object[][]{},
-                new String[]{"ID", "Tipo", "Nombre", "Bodega", "Año", "Uva", "Stock", "Precio"}
-        ) {
+        // Scroll horizontal real
+        jTableVerStock.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+
+        // Altura de filas
+        jTableVerStock.setRowHeight(22);
+
+        // Selección de una fila a la vez
+        jTableVerStock.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        // Evitar mover columnas
+        jTableVerStock.getTableHeader().setReorderingAllowed(false);
+
+        // Permitir cambiar ancho manualmente
+        jTableVerStock.getTableHeader().setResizingAllowed(true);
+    }
+
+    private void ajustarColumnasTabla() {
+        TableColumnModel c = jTableVerStock.getColumnModel();
+
+        if (c.getColumnCount() > 0) {
+            c.getColumn(0).setPreferredWidth(50);   // ID
+        }
+        if (c.getColumnCount() > 1) {
+            c.getColumn(1).setPreferredWidth(80);   // Tipo
+        }
+        if (c.getColumnCount() > 2) {
+            c.getColumn(2).setPreferredWidth(180);  // Nombre
+        }
+        if (c.getColumnCount() > 3) {
+            c.getColumn(3).setPreferredWidth(150);  // Bodega
+        }
+        if (c.getColumnCount() > 4) {
+            c.getColumn(4).setPreferredWidth(60);   // Año
+        }
+        if (c.getColumnCount() > 5) {
+            c.getColumn(5).setPreferredWidth(110);  // Crianza
+        }
+        if (c.getColumnCount() > 6) {
+            c.getColumn(6).setPreferredWidth(90);   // Precio
+        }
+        if (c.getColumnCount() > 7) {
+            c.getColumn(7).setPreferredWidth(70);   // Stock
+        }
+        if (c.getColumnCount() > 8) {
+            c.getColumn(8).setPreferredWidth(140);  // Uva
+        }
+    }
+
+    private void mostrarEnTabla(List<Vino> vinos) {
+        String[] columnas = {"ID", "Tipo", "Nombre", "Bodega", "Año", "Crianza", "Precio", "Stock", "Uva"};
+
+        DefaultTableModel modeloTabla = new DefaultTableModel(null, columnas) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
 
-        jTableVerStock.setModel(modelo);
-    }
+        for (Vino v : vinos) {
+            String tipo = "";
+            String uva = "";
 
-    private void mostrarEnTabla(List<Vino> lista) {
-        DefaultTableModel modelo = (DefaultTableModel) jTableVerStock.getModel();
-        modelo.setRowCount(0); // limpiar
+            if (v instanceof modelo.Tinto t) {
+                tipo = "Tinto";
+                uva = t.getUva().name();
+            } else if (v instanceof modelo.Blanco b) {
+                tipo = "Blanco";
+                uva = b.getUva().name();
+            } else if (v instanceof modelo.Rosado r) {
+                tipo = "Rosado";
+                uva = r.getUvaBase().name();
+            }
 
-        for (Vino v : lista) {
-            modelo.addRow(new Object[]{
+            modeloTabla.addRow(new Object[]{
                 v.getId(),
-                v.getClass().getSimpleName(),
+                tipo,
                 v.getNombre(),
                 v.getBodega(),
                 v.getAnioProduccion(),
-                obtenerUva(v),
+                v.getTipoCrianza(),
+                v.getPrecio(),
                 v.getStockBotellas(),
-                v.getPrecio()
+                uva
             });
         }
-    }
 
-    private String obtenerUva(Vino v) {
-        if (v instanceof modelo.Tinto t) {
-            return t.getUva().name();
-        }
-        if (v instanceof modelo.Blanco b) {
-            return b.getUva().name();
-        }
-        if (v instanceof modelo.Rosado r) {
-            return r.getUvaBase().name();
-        }
-        return "-";
+        jTableVerStock.setModel(modeloTabla);
+        ajustarColumnasTabla();
     }
 
     @SuppressWarnings("unchecked")

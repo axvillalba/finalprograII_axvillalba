@@ -143,15 +143,20 @@ El sistema puede generar:
 
 - Pantalla principal 
 ![Pantalla de Inicio](https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/1.png)
+
 - Búsqueda avanzada
-![Busqueda avanzada](https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/2.png-)
+![Busqueda avanzada](https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/2.png)
+
+
 - Modificación / edición
 ![Modificación](https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/3.png)
 ![Edicion](https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/4.png)
-- Importación CSV
+
+- Importación CSV 
 ![Cargar vinos](https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/5.png)
-- Exportación TXT/CSV
-![Exportar archivos](https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/5.png)
+
+- Exportación TXT/CSV 
+![Exportar archivos](https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/6.png)
 
 ---
 

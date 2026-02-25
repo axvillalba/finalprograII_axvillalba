@@ -140,13 +140,18 @@ El sistema puede generar:
 ---
 
 ## Capturas de pantalla
-*(Agregar las capturas de la interfaz y funcionamiento del sistema cuando las saque, las puedo dejar al final una vez que deje pipicucu la igu)*
 
-- Pantalla principal
+- Pantalla principal 
+![Pantalla de Inicio](https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/1.png)
 - Búsqueda avanzada
+!(Busqueda avanzada)[https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/2.png]
 - Modificación / edición
+!(Modificación)[https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/3.png]
+!(Edicion)[https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/4.png]
 - Importación CSV
+!(Cargar vinos)[https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/5.png]
 - Exportación TXT/CSV
+!(Exportar archivos)[https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/5.png]
 
 ---
 

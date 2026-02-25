@@ -159,6 +159,11 @@ El sistema puede generar:
 ![Exportar archivos](https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/6.png)
 
 ---
+## UML
+
+![UML](https://github.com/axvillalba/finalprograII_axvillalba/blob/main/FinalPrograII_VillalbaAxel/img/UML.jpeg)
+
+---
 
 ## Observaciones
 Este proyecto fue desarrollado con enfoque académico, priorizando:
